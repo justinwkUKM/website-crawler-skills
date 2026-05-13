@@ -95,6 +95,30 @@ This creates:
 - `reports/risk_findings-YYYYMMDD-HHMMSS.json`
 - `reports/website-risk-report-YYYYMMDD-HHMMSS.md`
 
+## Local setup
+
+1. Create and activate a virtual environment.
+2. Install dependencies from `requirements.txt`.
+3. Run the full pipeline script with a target URL.
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+# Full run with timestamped reports in reports/
+./scan_in_docker.sh "https://example.com" 100 3
+```
+
+If you want to run scripts directly without Docker, use the Python entry points in `.opencode/skills/website-risk-audit/scripts/`.
+
+## Contributing
+
+- Keep crawler behavior aligned with guardrails (public pages only, robots respected).
+- Do not commit generated scan outputs (`reports/`) or local environment files.
+- Include clear reproduction steps in pull requests for any behavior changes.
+- Prefer small, focused commits with descriptive messages.
+
 ## Files produced
 
 - `audit_output.jsonl`: raw crawled page evidence
