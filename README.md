@@ -14,7 +14,7 @@ The output is compliance triage, not a legal conclusion.
 ## What the scan does
 
 1. **Crawl public pages only**
-   - Uses Scrapy with `robots.txt` enabled by default
+   - Uses Scrapy with optional `robots.txt` enforcement (`--obey-robots`)
    - Uses rate limiting and crawl caps (depth/page count)
    - Does not log in, submit forms, bypass controls, or scrape private data
 2. **Extract evidence** per page
@@ -58,6 +58,7 @@ docker run --rm -v "$PWD:/app" website-risk-audit \
   --url https://example.com \
   --max-pages 10 \
   --depth 1 \
+  --obey-robots \
   --output /app/audit_output.jsonl
 ```
 
@@ -79,7 +80,7 @@ docker run --rm -v "$PWD:/app" --entrypoint python website-risk-audit \
   --target https://example.com \
   --max-pages 10 \
   --depth 1 \
-  --robots true \
+  --robots false \
   --output /app/website-risk-report.md
 ```
 
@@ -114,7 +115,7 @@ If you want to run scripts directly without Docker, use the Python entry points 
 
 ## Contributing
 
-- Keep crawler behavior aligned with guardrails (public pages only, robots respected).
+- Keep crawler behavior aligned with guardrails (public pages only, no access-control bypass).
 - Do not commit generated scan outputs (`reports/`) or local environment files.
 - Include clear reproduction steps in pull requests for any behavior changes.
 - Prefer small, focused commits with descriptive messages.
@@ -176,7 +177,7 @@ Use OpenCode from project root and prompt it to use `website-risk-audit` for a t
 ## Guardrails
 
 - Crawl only public pages
-- Respect `robots.txt`
+- Optional `robots.txt` enforcement with `--obey-robots`
 - No bypassing anti-bot/access controls
 - No form submissions or credential testing
 - No definitive legal conclusions

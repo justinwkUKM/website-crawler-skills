@@ -10,7 +10,7 @@ Use this skill to perform a lawful, public-web risk assessment of a website.
 ## Important rules
 
 - Crawl only public pages.
-- Respect robots.txt by default.
+- Respect robots.txt when `--obey-robots` is enabled.
 - Use rate limits.
 - Do not bypass login pages, CAPTCHAs, paywalls, bot protection, or access controls.
 - Do not submit forms.
@@ -35,7 +35,7 @@ Use this skill to perform a lawful, public-web risk assessment of a website.
 - Max pages: 100
 - Max depth: 3
 - Download delay: 2 seconds
-- Respect robots.txt: true
+- Respect robots.txt: false (default)
 
 ## Workflow
 
@@ -56,6 +56,7 @@ python .opencode/skills/website-risk-audit/scripts/run_audit.py \
   --url TARGET_URL \
   --max-pages 100 \
   --depth 3 \
+  --obey-robots \
   --output audit_output.jsonl
 ```
 

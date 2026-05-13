@@ -29,6 +29,7 @@ def main():
     parser.add_argument("--depth", type=int, default=2)
     parser.add_argument("--reports-dir", default="reports")
     parser.add_argument("--prefix", default="website-risk-report")
+    parser.add_argument("--obey-robots", action="store_true")
     args = parser.parse_args()
 
     reports_dir = Path(args.reports_dir)
@@ -54,6 +55,7 @@ def main():
             "--output",
             str(crawl_output),
         ]
+        + (["--obey-robots"] if args.obey_robots else [])
     )
 
     run_cmd(
@@ -80,7 +82,7 @@ def main():
             "--depth",
             str(args.depth),
             "--robots",
-            "true",
+            "true" if args.obey_robots else "false",
             "--output",
             str(report_output),
         ]

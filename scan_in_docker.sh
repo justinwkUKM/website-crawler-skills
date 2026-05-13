@@ -31,7 +31,7 @@ docker run --rm -v "$PWD:/app" --entrypoint python website-risk-audit \
   --target "$TARGET_URL" \
   --max-pages "$MAX_PAGES" \
   --depth "$DEPTH" \
-  --robots true \
+  --robots false \
   --output "/app/reports/website-risk-report-${TS}.md"
 
 echo "Saved report: reports/website-risk-report-${TS}.md"
