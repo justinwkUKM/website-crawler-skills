@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+audit_output.jsonl
+risk_findings.json
+website-risk-report.md
